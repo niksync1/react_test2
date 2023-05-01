@@ -11,6 +11,18 @@
       "title": "new post",
       "datetime": "April 28, 2023 9:19:36 PM",
       "body": "one new post testing ID"
+    },
+    {
+      "id": 1,
+      "title": "first post",
+      "datetime": "April 20, 2021 9:19:36 PM",
+      "body": "first post testing ID"
+    },
+    {
+      "id": 2,
+      "title": "new post edited",
+      "datetime": "May 01, 2023 1:54:57 PM",
+      "body": "second post testing ID edited"
     }
   ]
 }

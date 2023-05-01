@@ -2,11 +2,9 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
-
-const EditPost = ({
-    posts, handleEdit, editBody,setEditBody, editTitle, setEditTitle    
+const EditPost = ({posts, handleEdit, editBody,setEditBody, editTitle, setEditTitle    
 }) => {
-    const {id } = useParams;
+    const {id } = useParams();
     const post = posts.find(post => (post.id).toString() === id);
 
     useEffect (() => {
@@ -15,7 +13,7 @@ const EditPost = ({
             setEditBody(post.body);
         }
     }, [post, setEditTitle, setEditBody])
-
+    // console.log('fired')
   return (    
     <main className="NewPost">
         {editTitle && 
@@ -54,4 +52,4 @@ const EditPost = ({
   )
 }
 
-export default EditPost
+export default EditPost;
