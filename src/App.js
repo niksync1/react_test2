@@ -5,21 +5,27 @@ import EditPost from './EditPost';
 import PostPage from './PostPage';
 import About from './About';
 import Missing from './Missing';
+import { useEffect } from 'react';
+import useAxiosFetch from './hooks/useAxiosFetch';
 import { Route, Routes  } from 'react-router-dom';
+import { useStoreActions } from 'easy-peasy';
 import useWindowSize from './hooks/useWindowSize.js';
-import { DataProvider } from './context/DataContext';
 
 function App() {
- 
+  const setPosts = useStoreActions((actions) => actions.setPosts);
+  const { data, fetchError, isLoading } =  useAxiosFetch('http://localhost:3500/posts');
   const { width } =useWindowSize();
+
+  useEffect(() => {
+    setPosts(data);
+  }, [data, setPosts])
  
-  return (
-    <DataProvider>
-    <Routes>
-      
-      <Route path="/" element={<Layout width = { width}/>}>
-      
-        <Route index element={<Home/>} />        
+  return (    
+    <Routes>      
+      <Route path="/" element={<Layout width = { width}/>}>      
+        <Route index element={<Home 
+                                  isLoading={isLoading}
+                                  fetchError={fetchError}/>} />        
         <Route path="post">
           <Route index element={<NewPost/>} />        
           <Route path=":id" element={<PostPage/>} />
@@ -32,7 +38,6 @@ function App() {
         <Route path="*" element={<Missing />} />        
       </Route>     
     </Routes>
-    </DataProvider>
   );
 }
 
